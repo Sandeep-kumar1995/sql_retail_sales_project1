@@ -46,7 +46,7 @@ The data-cleaning process identifies and removes records containing missing valu
 
 sql
 
-
+```
 SELECT *
 FROM retail_sales
 WHERE transactions_id IS NULL
@@ -57,7 +57,7 @@ WHERE transactions_id IS NULL
    OR category IS NULL
    OR quantiy IS NULL
    OR total_sale IS NULL;
-
+```
 
 After reviewing the missing records, incomplete rows can be removed to improve data quality.
 
@@ -76,30 +76,30 @@ The initial analysis answers the following questions:
 
 sql
 
-
+```
 SELECT *
 FROM retail_sales
 WHERE sale_date = '2022-11-05';
-
+```
 
 ### Q2. Find clothing transactions with quantities greater than 10 in November 2022
 
 sql
 
-
+```
 SELECT *
 FROM retail_sales
 WHERE category = 'clothing'
   AND sale_date >= '2022-11-01'
   AND sale_date < '2022-12-01'
   AND quantiy > 10;
-
+```
 
 ### Q3. Calculate total sales and transaction counts for each category
 
 sql
 
-
+```
 SELECT
     category,
     SUM(total_sale) AS net_sales,
@@ -107,35 +107,35 @@ SELECT
 FROM retail_sales
 GROUP BY category
 ORDER BY net_sales DESC;
-
+```
 
 ### Q4. Find the average age of customers purchasing beauty products
 
 sql
 
-
+```
 SELECT
     ROUND(AVG(CAST(age AS DECIMAL(10, 2))), 2)
         AS avg_age
 FROM retail_sales
 WHERE category = 'beauty';
-
+```
 
 ### Q5. Retrieve transactions with total sales greater than 1,000
 
 sql
 
-
+```
 SELECT *
 FROM retail_sales
 WHERE total_sale > 1000;
-
+```
 
 ### Q6. Count transactions by gender and product category
 
 sql
 
-
+```
 SELECT
     gender,
     category,
@@ -143,13 +143,13 @@ SELECT
 FROM retail_sales
 GROUP BY gender, category
 ORDER BY category;
-
+```
 
 ### Q7. Identify the best-performing sales month for each year
 
 sql
 
-
+```
 WITH MonthlySales AS (
     SELECT
         YEAR(sale_date) AS sales_year,
@@ -176,33 +176,33 @@ SELECT
 FROM RankedMonths
 WHERE sales_rank = 1
 ORDER BY sales_year;
-
+```
 
 ### Q8. Find the top 5 customers based on total sales
 
 sql
 
-
+```
 SELECT TOP 5
     customer_id,
     SUM(total_sale) AS total_sales
 FROM retail_sales
 GROUP BY customer_id
 ORDER BY total_sales DESC;
-
+```
 
 ### Q9. Find the number of unique customers in each category
 
 sql
 
-
+```
 SELECT
     category,
     COUNT(DISTINCT customer_id) AS unique_customers
 FROM retail_sales
 GROUP BY category
 ORDER BY unique_customers DESC;
-
+```
 
 ### Q10. Analyze the number of orders by time of day
 
@@ -214,7 +214,7 @@ The transactions are divided into three shifts:
 
 sql
 
-
+```
 WITH ShiftAnalysis AS (
     SELECT
         transactions_id,
@@ -238,7 +238,7 @@ ORDER BY
         WHEN 'Afternoon' THEN 2
         WHEN 'Evening' THEN 3
     END;
-
+```
 
 ## 🧠 SQL Concepts Used
 
@@ -271,12 +271,15 @@ _Actual results and business findings should be documented after executing the q
 
 text
 
-
+```
 sql-retail-sales-analysis/
 │
 ├── README.md
 ├── retail_sales_analysis.sql
 └── retail_sales.csv
+```
+
+The filenames above are suggestions. Update them to match the files in your repository.
 
 ## 🚀 How to Run the Project
 
@@ -303,7 +306,7 @@ sql-retail-sales-analysis/
 
 **Sandeep Kushwaha**
 
-Aspiring Data Analyst | SQL | Data Analytics
+Aspiring Power BI Developer | Data Analyst | SQL | Data Analytics
 
 - GitHub: https://github.com/Sandeep-kumar1995/
 - LinkedIn: https://www.linkedin.com/in/sandeep-kushwaha-0b99931a3/
